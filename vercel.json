@@ -1,8 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/irregular-verb",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
