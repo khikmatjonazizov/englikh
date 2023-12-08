@@ -1,6 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import {Home} from "@/pages/home";
-import {IrregularVerbs} from "@/pages/irregular-verbs";
+import {IVerb} from "@/pages/iVerb";
 
 
 export const appRouter = () =>
@@ -10,7 +10,7 @@ export const appRouter = () =>
             element: <Home/>,
         },
         {
-            path: '/irregular-verbs',
-            element: <IrregularVerbs />
+            path: '/irregular-verb',
+            element: <IVerb />
         }
     ])

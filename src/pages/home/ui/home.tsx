@@ -7,7 +7,7 @@ import style from './home.module.css';
 export const Home: React.FC = () => {
     return (
         <main className={style.main}>
-            <Link to="irregular-verbs" className={style.link}>
+            <Link to="irregular-verb" className={style.link}>
                 <Button type="primary" size="large">
                     Irregular verbs
                 </Button>
