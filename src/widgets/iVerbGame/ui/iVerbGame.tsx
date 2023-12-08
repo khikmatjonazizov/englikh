@@ -27,7 +27,7 @@ const IVerbGameTable: React.FC<DisplayedIVerb> = ({v1, v2, v3}) => {
             </tr>
             </thead>
             <tbody>
-            <tr>ssss
+            <tr>
                 <td>{v1}</td>
                 <td>{v2}</td>
                 <td>{v3}</td>
