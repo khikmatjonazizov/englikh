@@ -1,16 +1,23 @@
 import {createBrowserRouter} from "react-router-dom";
-import {Home} from "@/pages/home";
-import {IVerb} from "@/pages/iVerb";
+import {lazy} from "react";
+
+const LazyHomePage = lazy(() => import('@/pages/home'))
+const LazyIVerbPage = lazy(() => import('@/pages/iVerb'))
+const LazyErrorPage = lazy(() => import('@/pages/error'))
 
 
 export const appRouter = () =>
     createBrowserRouter([
         {
             path: '/',
-            element: <Home/>,
+            element: <LazyHomePage />,
         },
         {
             path: '/irregular-verb',
-            element: <IVerb />
+            element: <LazyIVerbPage />
+        },
+        {
+            path: '/error',
+            element: <LazyErrorPage />
         }
     ])

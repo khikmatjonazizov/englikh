@@ -1,1 +1,3 @@
-export { Home } from './ui/home.tsx'
+import { Home } from './ui/home.tsx'
+
+export default Home

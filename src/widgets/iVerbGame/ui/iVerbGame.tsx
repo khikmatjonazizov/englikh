@@ -21,16 +21,22 @@ const IVerbGameTable: React.FC<DisplayedIVerb> = ({v1, v2, v3}) => {
         <table>
             <thead>
             <tr>
-                <th>V1</th>
-                <th>V2</th>
-                <th>V3</th>
+                {
+                    v1 !== null && <th>V1</th>
+                }
+                {
+                    v2 !== null && <th>V2</th>
+                }
+                {
+                    v3 !== null && <th>V3</th>
+                }
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>{v1}</td>
-                <td>{v2}</td>
-                <td>{v3}</td>
+                <td>{v1 ? v1.join(' / ') : ''}</td>
+                <td>{v2 ? v2.join(' / ') : ''}</td>
+                <td>{v3 ? v3.join(' / ') : ''}</td>
             </tr>
             </tbody>
         </table>

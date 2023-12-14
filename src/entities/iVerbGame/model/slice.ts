@@ -6,7 +6,8 @@ import i_verbs from '@/shared/data/irregular_verbs.json'
 export const initialState: IVerbGameStore = {
     settings: {
         page: '1',
-        control: 'input'
+        control: 'input',
+        missing_forms_count: 1,
     },
     progress: {
         correct_answers_count: 0,
@@ -15,6 +16,13 @@ export const initialState: IVerbGameStore = {
     },
     current: null,
     history: [],
+    // unused_i_verbs: [
+    //     {
+    //         v1: ['can'],
+    //         v2: ['could'],
+    //         v3: null
+    //     }
+    // ],
     unused_i_verbs: i_verbs,
 }
 

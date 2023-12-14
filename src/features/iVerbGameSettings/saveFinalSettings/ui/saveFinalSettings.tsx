@@ -40,8 +40,9 @@ export const SaveFinalSettings: React.FC<SaveFinalSettings> = (props) => {
             temporarySettings.page !== initialState.settings.page ? temporarySettings.page : null
         const control =
             temporarySettings.control !== initialState.settings.control ? temporarySettings.control : null
-
-        setSearchParams(createSearchParams({page, control}), {
+        const missing_forms_count =
+            temporarySettings.missing_forms_count !== initialState.settings.missing_forms_count ? temporarySettings.missing_forms_count : null
+        setSearchParams(createSearchParams({page, control, missing_forms_count}), {
             replace: true,
         })
         onClose()

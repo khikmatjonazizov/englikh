@@ -1,4 +1,5 @@
 import {PayloadAction} from "@reduxjs/toolkit";
+import {z} from 'zod'
 
 // commons
 export type IVerbType = {
@@ -33,10 +34,13 @@ export interface IVerbGameStore {
     unused_i_verbs: IVerbType[];
 }
 
-type IVerbGameStoreSettings = {
-    page: string;
-    control: string;
-}
+export const IVerbGameStoreSettingsSchema = z.object({
+    page: z.union([z.literal('1'), z.literal('2'), z.literal('all')]),
+    control: z.union([z.literal('input'), z.literal('button')]),
+    missing_forms_count: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+})
+
+type IVerbGameStoreSettings = z.infer<typeof IVerbGameStoreSettingsSchema>
 
 type IVerbGameStoreProgress = {
     correct_answers_count: number;

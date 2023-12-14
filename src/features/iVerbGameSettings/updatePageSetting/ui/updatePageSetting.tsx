@@ -9,7 +9,7 @@ interface UpdatePageSettingsProps {
     temporaryPage: IVerbGameStore['settings']['page'];
 }
 
-export const UpdatePageSettings: React.FC<UpdatePageSettingsProps> = (props) => {
+export const UpdatePageSetting: React.FC<UpdatePageSettingsProps> = (props) => {
     const {temporaryPage, onChange} = props;
 
     const handleChange = (event: RadioChangeEvent) => {

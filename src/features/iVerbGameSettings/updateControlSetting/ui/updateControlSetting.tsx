@@ -8,7 +8,7 @@ interface UpdateControlSettingsProps {
     temporaryControl: IVerbGameStore['settings']['control'];
 }
 
-export const UpdateControlSettings: React.FC<UpdateControlSettingsProps> = (props) => {
+export const UpdateControlSetting: React.FC<UpdateControlSettingsProps> = (props) => {
     const {temporaryControl, onChange} = props;
 
     const handleChange = (event: RadioChangeEvent) => {

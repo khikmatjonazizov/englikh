@@ -1,1 +1,3 @@
-export { IVerb } from './ui/irregularVerb.tsx'
+import { IVerb } from './ui/irregularVerb.tsx'
+
+export default IVerb
