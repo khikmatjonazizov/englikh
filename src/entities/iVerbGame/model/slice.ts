@@ -1,7 +1,7 @@
 import {createSlice,} from "@reduxjs/toolkit";
 
 import {IVerbGameStore, UpdateSettingsAction} from './types.ts'
-import i_verbs from '@/shared/data/irregular_verbs.json'
+import {getIVerbsByPage} from "../lib/getIVerbsByPage.ts";
 
 export const initialState: IVerbGameStore = {
     settings: {
@@ -16,14 +16,7 @@ export const initialState: IVerbGameStore = {
     },
     current: null,
     history: [],
-    // unused_i_verbs: [
-    //     {
-    //         v1: ['can'],
-    //         v2: ['could'],
-    //         v3: null
-    //     }
-    // ],
-    unused_i_verbs: i_verbs,
+    unused_i_verbs: getIVerbsByPage('1'),
 }
 
 export const IVerbGameSlice = createSlice({
@@ -31,11 +24,30 @@ export const IVerbGameSlice = createSlice({
     initialState,
     reducers: {
         UPDATE_I_VERB_GAME: (state, {payload}: UpdateSettingsAction) => {
-            return {...state, ...payload}
+            let unused_i_verbs = payload.unused_i_verbs ?? state.unused_i_verbs
+
+            if(payload.settings?.page && payload.settings.page !== state.settings.page) {
+                unused_i_verbs = getIVerbsByPage(payload.settings.page)
+            }
+
+            return {...state, ...payload, unused_i_verbs}
         },
+        RESET_I_VERB_GAME: (state) => {
+            const unused_i_verbs = getIVerbsByPage(state.settings.page)
+
+            state.current = null;
+            state.unused_i_verbs = unused_i_verbs;
+            state.history = [];
+            state.progress = {
+                is_game_over: false,
+                incorrect_answers_count: 0,
+                correct_answers_count: 0,
+            }
+        }
     }
 })
 
 export const {
     UPDATE_I_VERB_GAME,
+    RESET_I_VERB_GAME,
 } = IVerbGameSlice.actions

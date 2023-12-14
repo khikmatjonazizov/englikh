@@ -3,18 +3,12 @@ import {LoadingOutlined} from '@ant-design/icons'
 
 import './iVerbGame.css'
 
-import {Play} from "@/features/iVerbGame/play";
+import {Play} from "@/features/iVerbGame/continueGame";
 import {useAppSelector} from "@/shared/model/hooks";
 import {DisplayedIVerb} from "@/entities/iVerbGame/model/types.ts";
 import {useStartGame} from "@/features/iVerbGame/startGame/model/hooks/useStartGame.ts";
-
-const IVerbLoader: React.FC = () => {
-    return (
-        <div style={{height: '50px', display: 'flex', justifyContent: 'center'}}>
-            <LoadingOutlined style={{fontSize: '30px'}}/>
-        </div>
-    )
-}
+import {Loader} from "@/shared/ui/Loader";
+import {Space} from "antd";
 
 const IVerbGameTable: React.FC<DisplayedIVerb> = ({v1, v2, v3}) => {
     return (
@@ -51,13 +45,13 @@ export const IVerbGame: React.FC = () => {
         startGame()
     }, []);
 
+    if (current === null) return <Loader />
+
 
     return (
-        <div>
-            {
-                current ? <IVerbGameTable {...current.displayed_i_verb} /> : <IVerbLoader/>
-            }
+        <Space direction="vertical" style={{alignItems: 'center', width: '100%', gap: '30px'}}>
+            <IVerbGameTable {...current.displayed_i_verb} />
             <Play/>
-        </div>
+        </Space>
     )
 }

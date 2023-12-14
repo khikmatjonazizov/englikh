@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import {useAppDispatch, useAppSelector} from "@/shared/model/hooks";
 import {getRandomInt} from "@/shared/lib/getRandom.ts";
-import {UPDATE_I_VERB_GAME} from "@/entities/iVerbGame/model/slice.ts";
+import {RESET_I_VERB_GAME, UPDATE_I_VERB_GAME} from "@/entities/iVerbGame/model/slice.ts";
 import {IVerbGameStore} from "@/entities/iVerbGame/model/types.ts";
 
 export const useStartGame = () => {
@@ -9,6 +9,8 @@ export const useStartGame = () => {
     const dispatch = useAppDispatch()
 
     const startGame = useCallback(() => {
+        dispatch(RESET_I_VERB_GAME())
+
         const randomIndex = getRandomInt(unused_i_verbs.length)
 
         const current: IVerbGameStore['current'] = {
