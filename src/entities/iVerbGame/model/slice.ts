@@ -8,6 +8,7 @@ export const initialState: IVerbGameStore = {
         page: '1',
         control: 'input',
         missing_forms_count: 1,
+        isRealTimeSettings: false,
     },
     progress: {
         correct_answers_count: 0,

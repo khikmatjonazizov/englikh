@@ -3,9 +3,9 @@ import {z} from 'zod'
 
 // commons
 export type IVerbType = {
-    v1: string[] | null;
-    v2: string[] | null;
-    v3: string[] | null;
+    v1: string[];
+    v2: string[];
+    v3: string[];
 }
 
 export type DisplayedIVerb = {
@@ -37,7 +37,8 @@ export interface IVerbGameStore {
 export const IVerbGameStoreSettingsSchema = z.object({
     page: z.union([z.literal('1'), z.literal('2'), z.literal('all')]),
     control: z.union([z.literal('input'), z.literal('button')]),
-    missing_forms_count: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+    missing_forms_count: z.union([z.literal(1), z.literal(2)]),
+    isRealTimeSettings: z.boolean(),
 })
 
 type IVerbGameStoreSettings = z.infer<typeof IVerbGameStoreSettingsSchema>
@@ -48,7 +49,7 @@ type IVerbGameStoreProgress = {
     is_game_over: boolean;
 }
 
-type IVerbGameStoreCurrent = {
+export type IVerbGameStoreCurrent = {
     i_verb: IVerbType;
     displayed_i_verb: DisplayedIVerb;
 }

@@ -46,7 +46,7 @@ export const IVerbGameSettings: React.FC<IVerbGameSettingsProps> = (props) => {
     }
 
     const onReset = () => {
-        setTemporarySettings(initialState.settings)
+        setTemporarySettings({...initialState.settings, isRealTimeSettings: true})
         onClose()
     }
 
@@ -62,16 +62,16 @@ export const IVerbGameSettings: React.FC<IVerbGameSettingsProps> = (props) => {
 
         const {page, control, missing_forms_count} = initialState.settings;
 
-        const settings = {
+        const newSettings = {
             page: pageFromSP ? pageFromSP : page,
             control: controlFromSP ? controlFromSP : control,
-            missing_forms_count: missingFormsCountFromSP ? Number(missingFormsCountFromSP) : missing_forms_count
+            missing_forms_count: missingFormsCountFromSP ? Number(missingFormsCountFromSP) : missing_forms_count,
+            isRealTimeSettings: true,
         }
 
-        const res = IVerbGameStoreSettingsSchema.safeParse(settings)
+        const res = IVerbGameStoreSettingsSchema.safeParse(newSettings)
 
         if (res.success) {
-            console.log('success')
             dispatch(UPDATE_I_VERB_GAME({settings: res.data}))
             setTemporarySettings(res.data)
         } else {

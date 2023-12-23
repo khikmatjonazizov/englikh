@@ -1,14 +1,14 @@
-import React, {useEffect} from "react";
-import {LoadingOutlined} from '@ant-design/icons'
+import React, {useEffect, useState} from "react";
+import {Space} from "antd";
 
 import './iVerbGame.css'
 
 import {Play} from "@/features/iVerbGame/continueGame";
-import {useAppSelector} from "@/shared/model/hooks";
+import {useAppDispatch, useAppSelector} from "@/shared/model/hooks";
 import {DisplayedIVerb} from "@/entities/iVerbGame/model/types.ts";
 import {useStartGame} from "@/features/iVerbGame/startGame/model/hooks/useStartGame.ts";
 import {Loader} from "@/shared/ui/Loader";
-import {Space} from "antd";
+import {RESET_I_VERB_GAME} from "@/entities/iVerbGame/model/slice.ts";
 
 const IVerbGameTable: React.FC<DisplayedIVerb> = ({v1, v2, v3}) => {
     return (
@@ -38,14 +38,27 @@ const IVerbGameTable: React.FC<DisplayedIVerb> = ({v1, v2, v3}) => {
 }
 
 export const IVerbGame: React.FC = () => {
-    const {current} = useAppSelector(state => state.i_verb_game)
+    const {
+        current,
+        settings
+    } = useAppSelector(state => state.i_verb_game)
+    const dispatch = useAppDispatch()
     const {startGame} = useStartGame()
+    const [isGameStarted, setIsGameStarted] = useState(false)
 
     useEffect(() => {
-        startGame()
-    }, []);
+        if (settings.isRealTimeSettings && !isGameStarted) {
+            console.log('initial start game')
+            startGame()
+            setIsGameStarted(true);
+        } else if (isGameStarted) {
+            console.log('restart game')
+            dispatch(RESET_I_VERB_GAME())
+            startGame()
+        }
+    }, [settings]);
 
-    if (current === null) return <Loader />
+    if (current === null) return <Loader/>
 
 
     return (

@@ -21,7 +21,6 @@ export const UpdateMissingFormsCountSetting: React.FC<UpdateDisplayedFormsSettin
             <Radio.Group onChange={handleChange} value={temporaryMissingFormsCount} buttonStyle="solid">
                 <Radio.Button value={1}>One</Radio.Button>
                 <Radio.Button value={2}>Two</Radio.Button>
-                <Radio.Button value={3}>You must find all the forms</Radio.Button>
             </Radio.Group>
         </Space>
     )
